@@ -1,8 +1,9 @@
 import requests
 from config import API_KEY
 
-def get_weather_data(loc):
-  coord_url = f'https://api.openweathermap.org/data/2.5/weather?q={loc}&appid={API_KEY}'
+def get_weather_data(city, state_or_country=None):
+  loc_query = f"{city},{state_or_country}" if state_or_country else city
+  coord_url = f'https://api.openweathermap.org/data/2.5/weather?q={loc_query}&appid={API_KEY}'
   
   try:
     response = requests.get(coord_url)
@@ -13,7 +14,7 @@ def get_weather_data(loc):
     print(f"Error: {e}")
     return None
 
-  url = f'https://api.openweathermap.org/data/2.5/weather?q={loc}&appid={API_KEY}&units=imperial'
+  url = f'https://api.openweathermap.org/data/2.5/weather?q={loc_query}&appid={API_KEY}&units=imperial'
   
   try:
     response = requests.get(url)
