@@ -1,5 +1,6 @@
 import requests
-from config import API_KEY
+
+API_KEY = '04c0aca76b4ff4a68b98fe58d29c9e1a'
 
 def get_weather_data(city, state_or_country=None):
   loc_query = f"{city},{state_or_country}" if state_or_country else city

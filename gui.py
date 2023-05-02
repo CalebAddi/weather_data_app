@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from datetime import datetime, timedelta
 from PIL import ImageTk, Image
-from main import get_weather_data
+from weather_app_data.weather_app.api import get_weather_data
 
 class WeatherWindow(tk.Toplevel):
     def __init__(self, master=None, **kw):
