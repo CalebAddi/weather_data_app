@@ -1,3 +1,5 @@
+# This is the original code which you can run as a standalone python gui
+
 import pytz
 import tkinter as tk
 from tkinter import ttk
