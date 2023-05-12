@@ -36,8 +36,8 @@ def fetch_weather(request):
             wind_deg = data['wind']['deg'],
             air_pressure = data['main']['pressure'],
             weather_desc = data['weather'][0]['description'].upper(),
-            sunrise = sunrise_local,
-            sunset = sunset_local,
+            sunrise=sunrise_local.strftime('%Y-%m-%d %H:%M:%S'),
+            sunset=sunset_local.strftime('%Y-%m-%d %H:%M:%S'),
         )
 
         weather_data.save()
