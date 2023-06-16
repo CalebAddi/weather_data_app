@@ -47,15 +47,13 @@
                 console.error("Error fetching weather data");
             },
 
-            formatDate(timestamp, timezoneOffset) 
+            formatDate(timestamp) 
             {
-                const timezone = new Date().getTimezoneOffset() * 60 - timezoneOffset;
-                const date = new Date((timestamp + timezone) * 1000);
+                const date = new Date(timestamp * 1000);
 
                 return date.toLocaleTimeString(navigator.language, {
                     hour: "2-digit",
                     minute: "2-digit",
-                    hour12: false
                 });
             },
         },

@@ -24,8 +24,8 @@ def fetch_weather(request):
 
         sunrise_utc = datetime.utcfromtimestamp(data['sys']['sunrise'])
         sunset_utc = datetime.utcfromtimestamp(data['sys']['sunset'])
-        sunrise_local = sunrise_utc + timedelta(seconds = data['timezone'])
-        sunset_local = sunset_utc + timedelta(seconds = data['timezone'])
+        sunrise_utc = datetime.utcfromtimestamp(data['sys']['sunrise'])
+        sunset_utc = datetime.utcfromtimestamp(data['sys']['sunset'])
 
         weather_data = WeatherData.objects.create(
             city = city,
@@ -36,8 +36,8 @@ def fetch_weather(request):
             wind_deg = data['wind']['deg'],
             air_pressure = data['main']['pressure'],
             weather_desc = data['weather'][0]['description'].upper(),
-            sunrise=sunrise_local.strftime('%Y-%m-%d %H:%M:%S'),
-            sunset=sunset_local.strftime('%Y-%m-%d %H:%M:%S'),
+            sunrise=sunrise_utc.strftime('%Y-%m-%d %H:%M:%S'),
+            sunset=sunset_utc.strftime('%Y-%m-%d %H:%M:%S'),
         )
 
         print(data)
