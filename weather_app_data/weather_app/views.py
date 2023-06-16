@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import WeatherData
 from .api import get_weather_data
-from datetime import datetime
+from datetime import datetime, timedelta
 from timezonefinder import TimezoneFinder
 
 
@@ -22,10 +22,10 @@ def fetch_weather(request):
         tzName = timefind.timezone_at(lat = lat, lng = lon)
         local_tz = pytz.timezone(tzName) if tzName else pytz.UTC
 
-        sunrise_utc = datetime.fromtimestamp(data['sys']['sunrise'], tz = pytz.UTC)
-        sunset_utc = datetime.fromtimestamp(data['sys']['sunset'], tz = pytz.UTC)
-        sunrise_local = sunrise_utc.astimezone(local_tz)
-        sunset_local = sunset_utc.astimezone(local_tz)
+        sunrise_utc = datetime.utcfromtimestamp(data['sys']['sunrise'])
+        sunset_utc = datetime.utcfromtimestamp(data['sys']['sunset'])
+        sunrise_local = sunrise_utc + timedelta(seconds = data['timezone'])
+        sunset_local = sunset_utc + timedelta(seconds = data['timezone'])
 
         weather_data = WeatherData.objects.create(
             city = city,
@@ -39,6 +39,8 @@ def fetch_weather(request):
             sunrise=sunrise_local.strftime('%Y-%m-%d %H:%M:%S'),
             sunset=sunset_local.strftime('%Y-%m-%d %H:%M:%S'),
         )
+
+        print(data)
 
         weather_data.save()
         response = {
