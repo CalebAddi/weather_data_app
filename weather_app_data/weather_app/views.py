@@ -40,7 +40,7 @@ def fetch_weather(request):
             sunset=sunset_utc.strftime('%Y-%m-%d %H:%M:%S'),
         )
 
-        print(data)
+        # print(data)
 
         weather_data.save()
         response = {
