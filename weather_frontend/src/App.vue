@@ -1,13 +1,19 @@
+<style lang="scss">
+    @import '@/assets/styles/app.css';
+</style>
+
 <template>
     <div id="app">
         <h1>Weather App</h1>
-        <input v-model="city" placeholder="City" />
-        <input v-model="stateOrCountry" placeholder="State or Country (Optional)" />
-        <button @click="refreshWeatherData">Get Weather</button>
+        <div class="input_container">
+            <input class="city_input" v-model="city" placeholder="City" />
+            <input class="state_input" v-model="stateOrCountry" placeholder="State or Country" />
+            <button class="btn_input" @click="refreshWeatherData">Get Weather</button>
+        </div>
 
-        <div v-if="weatherData">
+        <div class="main-container" v-if="weatherData">
             <h2>Location: {{ weatherData.name }}</h2>
-            <div class="air-container">
+            <div class="weather-container">
                 <h2>Current Weather</h2>
                 <p>Weather: {{ weatherData.weather[0].description }}</p>
                 <p>Temperature: {{ weatherData.main.temp }} °F</p>
@@ -17,7 +23,7 @@
                 <p>Air Pressure: {{ weatherData.main.pressure }} hPa</p>
             </div>
             
-            <div class="curr_weather-container">
+            <div class="sun-container">
                 <h2>Sunrise / Sunset</h2>
                 <p>Sunrise: {{ formatDate(weatherData.sys.sunrise, weatherData.timezone) }}</p>
                 <p>Sunset: {{ formatDate(weatherData.sys.sunset, weatherData.timezone) }}</p>

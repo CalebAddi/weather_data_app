@@ -1,0 +1,51 @@
+body
+{
+    background-color: rgba(105, 112, 121, 0.7);
+}
+
+.input_container
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 1;
+    margin-top: 2em;
+
+
+    .city_input
+    {
+        margin-right: 1em;
+        padding: 5px;
+    }
+
+    .state_input
+    {
+        margin-right: 1em ;
+        padding: 5px;
+    }
+
+    .btn_input
+    {
+        padding: 5px;
+    }
+}
+
+.main-container
+{
+    margin-top: 2.5em;
+    display: grid;
+    justify-content: center;
+
+
+    .weather-container
+    {
+        display: grid;
+        justify-content: center;
+    }
+
+    .sun-container
+    {
+        display: grid;
+        justify-content: center;
+    }
+}
